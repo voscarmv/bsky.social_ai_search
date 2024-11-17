@@ -1,0 +1,17 @@
+{
+  "name": "bsky.social_ai_search",
+  "version": "1.0.0",
+  "description": "AI search engine for BlueSky Social",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "voscarmv@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@atproto/api": "^0.13.16",
+    "dotenv": "^16.4.5",
+    "gitignore": "^0.7.0",
+    "openai": "^4.72.0"
+  }
+}
