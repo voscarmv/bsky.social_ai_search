@@ -3,3 +3,4 @@
 
 BSKY_USER="someuser.bsky.social"
 BSKY_PASS="somepassword"
+OPENAI_KEY="somekey"

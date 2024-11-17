@@ -7,7 +7,7 @@ import { zodResponseFormat } from 'openai/helpers/zod';
 const agent = new AtpAgent({
   service: 'https://bsky.social'
 });
-const openai = new OpenAI();
+const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 // from https://docs.bsky.app/docs/api/app-bsky-feed-search-posts
 const searchQuerySchema = z.object({
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -86,7 +86,7 @@ const searchQuerySchema = z.object({
     password: process.env.BSKY_PASS
   });
   const description = 'Find a conversation where people are discussing the geopolitics of the American economy';
-  const completion = await openai.chat.completions.create({
+  const completion = await openai.beta.chat.completions.parse({
     model: "gpt-4o",
     messages: [
       { role: "system", content: "Produce the best search query for finding posts based on the description provided. The search is carried away on BlueSky, a social network very similar to Twitter." },
@@ -95,7 +95,7 @@ const searchQuerySchema = z.object({
     response_format: zodResponseFormat(searchQuerySchema, "searchq")
   });
   const searchq = completion.choices[0].message
-
+  console.log(searchq);
   // If the model refuses to respond, you will get a refusal message
   if (searchq.refusal) {
     console.log(searchq.refusal);
