@@ -9,75 +9,80 @@ const agent = new AtpAgent({
 });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 // from https://docs.bsky.app/docs/api/app-bsky-feed-search-posts
-const searchQuerySchema = z.object({
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "title": "Search Query Schema",
-  "description": "Schema for defining search query parameters in a structured way.",
-  "properties": {
-    "q": {
-      "type": "string",
-      "description": "Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended.",
-      "minLength": 1
-    },
-    "sort": {
-      "type": "string",
-      "description": "Specifies the ranking order of results.",
-      "enum": ["top", "latest"],
-      "default": "latest"
-    },
-    "since": {
-      "type": "string",
-      "description": "Filter results for posts after the indicated datetime (inclusive). Expected to use 'sortAt' timestamp, which may not match 'createdAt'. Can be a datetime, or just an ISO date (YYYY-MM-DD).",
-      "format": "date-time"
-    },
-    "until": {
-      "type": "string",
-      "description": "Filter results for posts before the indicated datetime (not inclusive). Expected to use 'sortAt' timestamp, which may not match 'createdAt'. Can be a datetime, or just an ISO date (YYYY-MM-DD).",
-      "format": "date-time"
-    },
-    "mentions": {
-      "type": "string",
-      "description": "Filter to posts which mention the given account. Handles are resolved to DID before query-time. Only matches rich-text facet mentions."
-    },
-    "author": {
-      "type": "string",
-      "description": "Filter to posts by the given account. Handles are resolved to DID before query-time."
-    },
-    "lang": {
-      "type": "string",
-      "description": "Filter to posts in the given language. Expected to be based on post language field, though server may override language detection."
-    },
-    "domain": {
-      "type": "string",
-      "description": "Filter to posts with URLs (facet links or embeds) linking to the given domain (hostname). Server may apply hostname normalization."
-    },
-    "url": {
-      "type": "string",
-      "description": "Filter to posts with links (facet links or embeds) pointing to this URL. Server may apply URL normalization or fuzzy matching.",
-      "format": "uri"
-    },
-    "tag": {
-      "type": "array",
-      "description": "Filter to posts with the given tag (hashtag), based on rich-text facet or tag field. Do not include the hash (#) prefix. Multiple tags can be specified, with 'AND' matching.",
-      "items": {
-        "type": "string",
-        "maxLength": 640
+const searchQuerySchema = {
+  "type": "json_schema",
+  "json_schema": {
+    name: "search_query_schema",
+    schema: {
+      type: "object",
+      properties: {
+        "q": {
+          "type": "string",
+          "description": "Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended.",
+          "minLength": 1
+        },
+        "sort": {
+          "type": "string",
+          "description": "Specifies the ranking order of results.",
+          "enum": ["top", "latest"],
+          "default": "latest"
+        },
+        "since": {
+          "type": "string",
+          "description": "Filter results for posts after the indicated datetime (inclusive). Expected to use 'sortAt' timestamp, which may not match 'createdAt'. Can be a datetime, or just an ISO date (YYYY-MM-DD).",
+          "format": "date-time"
+        },
+        "until": {
+          "type": "string",
+          "description": "Filter results for posts before the indicated datetime (not inclusive). Expected to use 'sortAt' timestamp, which may not match 'createdAt'. Can be a datetime, or just an ISO date (YYYY-MM-DD).",
+          "format": "date-time"
+        },
+        "mentions": {
+          "type": "string",
+          "description": "Filter to posts which mention the given account. Handles are resolved to DID before query-time. Only matches rich-text facet mentions."
+        },
+        "author": {
+          "type": "string",
+          "description": "Filter to posts by the given account. Handles are resolved to DID before query-time."
+        },
+        "lang": {
+          "type": "string",
+          "description": "Filter to posts in the given language. Expected to be based on post language field, though server may override language detection."
+        },
+        "domain": {
+          "type": "string",
+          "description": "Filter to posts with URLs (facet links or embeds) linking to the given domain (hostname). Server may apply hostname normalization."
+        },
+        "url": {
+          "type": "string",
+          "description": "Filter to posts with links (facet links or embeds) pointing to this URL. Server may apply URL normalization or fuzzy matching.",
+          "format": "uri"
+        },
+        "tag": {
+          "type": "array",
+          "description": "Filter to posts with the given tag (hashtag), based on rich-text facet or tag field. Do not include the hash (#) prefix. Multiple tags can be specified, with 'AND' matching.",
+          "items": {
+            "type": "string",
+            "maxLength": 640
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Limit the number of results returned.",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 25
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Optional pagination mechanism; may not necessarily allow scrolling through entire result set."
+        }
       }
-    },
-    "limit": {
-      "type": "integer",
-      "description": "Limit the number of results returned.",
-      "minimum": 1,
-      "maximum": 100,
-      "default": 25
-    },
-    "cursor": {
-      "type": "string",
-      "description": "Optional pagination mechanism; may not necessarily allow scrolling through entire result set."
     }
-  },
-  "required": ["q"]
+  }
+};
+const searchQuerySchema2 = z.object({
+  q: z.string()
 });
 
 (async () => {
@@ -92,7 +97,8 @@ const searchQuerySchema = z.object({
       { role: "system", content: "Produce the best search query for finding posts based on the description provided. The search is carried away on BlueSky, a social network very similar to Twitter." },
       { role: "user", content: description },
     ],
-    response_format: zodResponseFormat(searchQuerySchema, "searchq")
+    /* response_format: zodResponseFormat(searchQuerySchema, "searchq") */
+    response_format: searchQuerySchema
   });
   const searchq = completion.choices[0].message
   console.log(searchq);
