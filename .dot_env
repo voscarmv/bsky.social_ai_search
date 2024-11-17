@@ -1,0 +1,5 @@
+# Change the name of this file to just .env
+# Use your own credentials here
+
+BSKY_USER="someuser.bsky.social"
+BSKY_PASS="somepassword"
