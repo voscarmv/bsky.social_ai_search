@@ -18,8 +18,7 @@ parser.addOption('d', 'description', 'Describe the type of posts you want to see
     description = value;
   });
 
-  parser.parse();
-console.log(description);
+parser.parse();
 
 const agent = new AtpAgent({
   service: 'https://bsky.social'
@@ -107,7 +106,7 @@ const searchQuerySchema2 = z.object({
     identifier: process.env.BSKY_USER,
     password: process.env.BSKY_PASS
   });
-//  const description = 'Find a conversation where people are discussing the geopolitics of the American economy';
+  //  const description = 'Find a conversation where people are discussing the geopolitics of the American economy';
   const instruction = 'Create a query composed of subqueries separeted by || for "OR". Each subquery should be inside parentheses and may contain different combinations of relevant single-word keywords, or keyphrases inside double quotes. You may nest and combine these keywords and keyphrases themselves inside parentheses also using && for "AND" and || for "OR". Never use the expressions "AND", neither "OR", instead always use &&, ||';
   const completion = await openai.beta.chat.completions.parse({
     model: "gpt-4o",
@@ -119,16 +118,74 @@ const searchQuerySchema2 = z.object({
     response_format: searchQuerySchema
   });
   const searchq = completion.choices[0].message
-  console.log(searchq);
+  searchq.parsed.limit = 100;
   // If the model refuses to respond, you will get a refusal message
+  let posts;
   if (searchq.refusal) {
     console.log(searchq.refusal);
   } else {
     const search = await agent.app.bsky.feed.searchPosts(
       searchq.parsed
     );
-    console.log(search.data.posts);
+    posts = search.data.posts;
   }
+  let short = [];
+  for (let i = 0; i < posts.length; i++) {
+    let url = `https://bsky.app/profile/${posts[i].author.handle}/post/${posts[i].uri.split('/')[4]}`;
+    short.push({
+      url: url,
+      text: posts[i].record.text
+    });
+  }
+  const gradeThese = {
+    description: description,
+    query: searchq.parsed,
+    posts: short
+  }
+  const gradedPosts = {
+    "type": "json_schema",
+    "json_schema": {
+      name: "graded_posts",
+      schema: {
+        type: "object",
+        properties: {
+          "description": {
+            "type": "string",
+            "description": "The description of the post search carried away"
+          },
+          "query": {
+            "type": "string",
+            "description": "The query sent to the search engine to perform the post search"
+          },
+          "posts": {
+            "type": "array",
+            "description": "An array of posts graded and sorted by relevance to the description given",
+            "items": {
+              "type": "object",
+              "properties": {
+                "relevance": { "type": "string", "description": "relevance grade given" },
+                "url": { "type": "string" },
+                "text": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  const instruction2 = 'Grade each post according to how relevant it is to the provided description, from 0 to 100. Omit posts with no text. Sort by relevance in final result.';
+  const completion2 = await openai.beta.chat.completions.parse({
+    model: "gpt-4o",
+    messages: [
+      { role: "system", content: instruction2 },
+      { role: "user", content: JSON.stringify(gradeThese) },
+    ],
+    /* response_format: zodResponseFormat(searchQuerySchema, "searchq") */
+    response_format: gradedPosts
+  });
+
+  console.log(JSON.stringify(completion2.choices[0].message.parsed));
   // Perhaps use the results to refine the search recursively.
   // That is: figure out new search queries based on the results of the previous search, etc, etc.
 
