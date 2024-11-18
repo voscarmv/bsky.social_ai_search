@@ -1,159 +1,109 @@
 Niche memes or jokes that only resonate with a very small, informed audience—like puns about archaic programming languages or regional dialects.
 {
   role: 'assistant',
-  content: '{"q":"\\"niche memes\\" || \\"niche jokes\\" || \\"informed audience\\" || \\"archaic programming languages\\" || \\"regional dialects\\" || niche && humor || specific && humor || obscure && memes || jokes && insiders","sort":"latest","lang":"en","tag":["memes","jokes"],"limit":50}',
+  content: '{"q":"((\\"niche memes\\" || \\"jokes\\" || \\"inside jokes\\") && (\\"archaic programming languages\\" || \\"regional dialects\\")) || ((\\"obscure references\\" || \\"specialized humor\\") && (\\"puns\\" || \\"wordplay\\"))","sort":"top","lang":"en","tag":["niche","jokes","memes"],"limit":50}',
   refusal: null,
   tool_calls: [],
   parsed: {
-    q: '"niche memes" || "niche jokes" || "informed audience" || "archaic programming languages" || "regional dialects" || niche && humor || specific && humor || obscure && memes || jokes && insiders',
-    sort: 'latest',
+    q: '(("niche memes" || "jokes" || "inside jokes") && ("archaic programming languages" || "regional dialects")) || (("obscure references" || "specialized humor") && ("puns" || "wordplay"))',
+    sort: 'top',
     lang: 'en',
-    tag: [ 'memes', 'jokes' ],
+    tag: [ 'niche', 'jokes', 'memes' ],
     limit: 50
   }
 }
 [
   {
-    uri: 'at://did:plc:6w3koquqh5lzoshd7ae5lckn/app.bsky.feed.post/3larqyir4bs2j',
-    cid: 'bafyreiejvykklm277ankoqlp6ssj4xtnrikwoynlsqaddtqkpw4jqzcedu',
+    uri: 'at://did:plc:wm6eqwzjai6jobxwg7baobck/app.bsky.feed.post/3k626wwibdi2k',
+    cid: 'bafyreihei54berhazkrgihor7oqtnta3zlkjmfn4bzztserolkhrcbswse',
     author: {
-      did: 'did:plc:6w3koquqh5lzoshd7ae5lckn',
-      handle: 'caitlinvincent.bsky.social',
-      displayName: 'Dr Caitlin Vincent',
-      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:6w3koquqh5lzoshd7ae5lckn/bafkreibsx6bkqpwrgh467i6yq367ddzrlqv5ppu2de4ifwafkkdpqvbmqm@jpeg',
-      associated: [Object],
+      did: 'did:plc:wm6eqwzjai6jobxwg7baobck',
+      handle: 'olswampass.bsky.social',
+      displayName: 'Hork-Skajir 🦧',
+      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:wm6eqwzjai6jobxwg7baobck/bafkreibhcpy2ohip42sqgktfudjgiub2qkwixyfz2pqe6e2ccpkfm7lim4@jpeg',
       viewer: [Object],
       labels: [],
-      createdAt: '2023-10-14T06:35:53.696Z'
+      createdAt: '2023-08-04T21:27:15.954Z'
     },
     record: {
       '$type': 'app.bsky.feed.post',
-      createdAt: '2024-11-12T21:17:00.492Z',
+      createdAt: '2023-08-28T20:06:10.139Z',
+      embed: [Object],
       langs: [Array],
-      text: 'Progress report on OPERA WARS (coming soonish from Scribner):\n' +
-        '\n' +
-        'Number of words: 72,000\n' +
-        'Number of interviews with opera insiders: 29 \n' +
-        'Number of swear words: 17\n' +
-        'Number of tenor jokes: 5,603'
+      reply: [Object],
+      text: 'Me existing on the 4th meme dimension'
     },
+    embed: { '$type': 'app.bsky.embed.images#view', images: [Array] },
     replyCount: 1,
-    repostCount: 0,
-    likeCount: 14,
+    repostCount: 1,
+    likeCount: 4,
     quoteCount: 0,
-    indexedAt: '2024-11-12T21:17:00.492Z',
+    indexedAt: '2023-08-28T20:06:10.139Z',
     viewer: { threadMuted: false, embeddingDisabled: false },
     labels: []
   },
   {
-    uri: 'at://did:plc:efzgpy2h4q6gp5k3gupddnvt/app.bsky.feed.post/3larctz7ugk2b',
-    cid: 'bafyreia2ljjnsb7nji3fygnabwkpoetpm6lc4i3vy2yv2wobs6o7wa7lnm',
+    uri: 'at://did:plc:zdme2lwinfu7jbnb5ji2mqpt/app.bsky.feed.post/3kbnjmih47j2h',
+    cid: 'bafyreiasqpkhv46atqhusioksnwelazvc5hmgxynydmszp2aac3u4eldfi',
     author: {
-      did: 'did:plc:efzgpy2h4q6gp5k3gupddnvt',
-      handle: 'jeremyharper.bsky.social',
-      displayName: '',
-      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:efzgpy2h4q6gp5k3gupddnvt/bafkreiahdlyjhxbzu527efkvwqspgmimirwbujgiakuom5x2vk23ex2f34@jpeg',
+      did: 'did:plc:zdme2lwinfu7jbnb5ji2mqpt',
+      handle: 'agentshades.bsky.social',
+      displayName: 'Oh Deer David ',
+      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:zdme2lwinfu7jbnb5ji2mqpt/bafkreidfyzfcqwduo6vsaq3r5xb3wbymmswixkkjzeqcsnh3d7kwtzapg4@jpeg',
       associated: [Object],
       viewer: [Object],
       labels: [],
-      createdAt: '2024-11-11T03:48:10.386Z'
+      createdAt: '2023-08-02T21:51:55.653Z'
     },
     record: {
       '$type': 'app.bsky.feed.post',
-      createdAt: '2024-11-12T17:03:57.595Z',
-      facets: [Array],
+      createdAt: '2023-10-13T16:53:20.247Z',
       langs: [Array],
-      text: "A super sweet marketer came up to me and told me I had scary looking newsletter images. I didn't have the heart to tell her that they were jokes for technical people who were insiders. Thought about it overnight and realized if I want a popular blog I need to stop doing that type of joke. #AMIA2024"
-    },
-    replyCount: 1,
-    repostCount: 0,
-    likeCount: 1,
-    quoteCount: 0,
-    indexedAt: '2024-11-12T17:03:52.612Z',
-    viewer: { threadMuted: false, embeddingDisabled: false },
-    labels: []
-  },
-  {
-    uri: 'at://did:plc:kxlggazepmhqyrmswwuxunip/app.bsky.feed.post/3l6anpxd72u22',
-    cid: 'bafyreiejqx36njwe4urzprxgvxh5dvvl2tgprqtiu5n4cexmrpx7w4mdz4',
-    author: {
-      did: 'did:plc:kxlggazepmhqyrmswwuxunip',
-      handle: 'danielwcarlson.bsky.social',
-      displayName: 'Yes I Can Hear You Clem FanDaniel',
-      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:kxlggazepmhqyrmswwuxunip/bafkreihkqaijuo5tbwwkm4p4axub3mpmwwykmfxlme3amy6dfajx4dzcie@jpeg',
-      associated: [Object],
-      viewer: [Object],
-      labels: [],
-      createdAt: '2023-07-01T20:24:07.286Z'
-    },
-    record: {
-      '$type': 'app.bsky.feed.post',
-      createdAt: '2024-10-11T15:12:53.535Z',
-      langs: [Array],
-      text: "It was genuinely neat when Comedy Central got to broadcast the legit Friars Club roasts: major comedians, killer jokes, a real sense of comedy history and insiders and legends. Then the network made their own, and they're among the worst things they ever produced."
+      reply: [Object],
+      text: "It's all terrible puns and obscure references here folks"
     },
     replyCount: 0,
     repostCount: 0,
     likeCount: 0,
     quoteCount: 0,
-    indexedAt: '2024-10-11T15:12:53.535Z',
+    indexedAt: '2023-10-13T16:53:20.247Z',
     viewer: { threadMuted: false, embeddingDisabled: false },
     labels: []
   },
   {
-    uri: 'at://did:plc:qxyx7g5tnzbf32uveki53a2v/app.bsky.feed.post/3kr7nymt2ch2j',
-    cid: 'bafyreiagtaly6tyxoto3tfnpts5j7midtirpsppi4kolez37eki5pvofne',
+    uri: 'at://did:plc:rn3rygumcn7hr7jywzdtjrlg/app.bsky.feed.post/3lan4javntc2o',
+    cid: 'bafyreifgpujthlytogwassl2wvw2bipjrg4lqwvwldl3aigf5vzmhtz5iu',
     author: {
-      did: 'did:plc:qxyx7g5tnzbf32uveki53a2v',
-      handle: 'carlnyberg312.bsky.social',
-      displayName: 'Carl Nyberg ',
-      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:qxyx7g5tnzbf32uveki53a2v/bafkreieybjpaarmzgfvtvavmgfwsesdwuezlzb52cm4nlcpfn2midgjpli@jpeg',
+      did: 'did:plc:rn3rygumcn7hr7jywzdtjrlg',
+      handle: 'mrrutherford.bsky.social',
+      displayName: 'Nathanael',
+      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:rn3rygumcn7hr7jywzdtjrlg/bafkreic5svpz53ydcvvv7gy6kvkk2odckmivqgs4mkombs7qtv4gqhmeiy@jpeg',
       associated: [Object],
       viewer: [Object],
-      labels: [Array],
-      createdAt: '2023-09-20T01:53:39.577Z'
+      labels: [],
+      createdAt: '2023-07-28T12:05:17.327Z'
     },
     record: {
       '$type': 'app.bsky.feed.post',
-      createdAt: '2024-04-28T19:17:33.993Z',
+      createdAt: '2024-11-11T00:59:55.145Z',
+      embed: [Object],
       langs: [Array],
-      text: 'Political insiders and nominal journalists yucking it up as Biden tells jokes about Trump has an optics to it. \n' +
+      text: "Don't usually do these things, but why not?\n" +
         '\n' +
-        'And that optics helps Trump beat Biden in November.'
+        "You'll like me if you like: \n" +
+        '\n' +
+        '- Really dumb humor/puns\n' +
+        '- College sports (especially Vols and Lady Vols)\n' +
+        '- Star Wars, Star Trek, Mass Effect\n' +
+        '- Obscure references to shows/movies/games\n' +
+        "- Some political discourse (I'm further left than you'd probably guess)"
     },
-    replyCount: 1,
+    embed: { '$type': 'app.bsky.embed.record#view', record: [Object] },
+    replyCount: 0,
     repostCount: 0,
-    likeCount: 2,
-    quoteCount: 0,
-    indexedAt: '2024-04-28T19:17:33.993Z',
-    viewer: { threadMuted: false, embeddingDisabled: false },
-    labels: []
-  },
-  {
-    uri: 'at://did:plc:2gjlieiwrktvlyiswehcm2h6/app.bsky.feed.post/3ki2gpadsdc2b',
-    cid: 'bafyreif3fumqdgwao7pdddljn5gryipyxjsc2bxnwthpsvch4ujwee4oqu',
-    author: {
-      did: 'did:plc:2gjlieiwrktvlyiswehcm2h6',
-      handle: 'doowopcinderblock.bsky.social',
-      displayName: 'Doowop',
-      avatar: 'https://cdn.bsky.app/img/avatar/plain/did:plc:2gjlieiwrktvlyiswehcm2h6/bafkreicgx2wvzli6erwvpt3nb3k7gen4xdceoxz5ylkkpa5df26ftljjey@jpeg',
-      associated: [Object],
-      viewer: [Object],
-      labels: [Array],
-      createdAt: '2023-07-28T20:28:24.392Z'
-    },
-    record: {
-      '$type': 'app.bsky.feed.post',
-      createdAt: '2024-01-03T04:36:59.840Z',
-      langs: [Array],
-      reply: [Object],
-      text: 'Would humor be considered a key difference or not an issue at all?  So there is a lot of jokes, both for outsiders and insiders in WH40K.  Are there memes and in-jokes for the true crime podcast folks?'
-    },
-    replyCount: 1,
-    repostCount: 0,
-    likeCount: 1,
-    quoteCount: 0,
-    indexedAt: '2024-01-03T04:36:59.840Z',
+    likeCount: 8,
+    quoteCount: 1,
+    indexedAt: '2024-11-11T00:59:55.145Z',
     viewer: { threadMuted: false, embeddingDisabled: false },
     labels: []
   }

@@ -108,7 +108,7 @@ const searchQuerySchema2 = z.object({
     password: process.env.BSKY_PASS
   });
 //  const description = 'Find a conversation where people are discussing the geopolitics of the American economy';
-  const instruction = 'Create the best possible search query to maximize the number of post results. Use single keywords, and also keyphrases inside quotes. You may use some words outside the given description if that will yield better results. Use different subqueries in parentheses separated by || for OR. Also you may use && for "AND" inside the subqueries that are written inside the parentheses, using Lucene query syntax to increase the number of posts found by the search.';
+  const instruction = 'Create a query composed of subqueries separeted by || for "OR". Each subquery should be inside parentheses and may contain different combinations of relevant single-word keywords, or keyphrases inside double quotes. You may nest and combine these keywords and keyphrases themselves inside parentheses also using && for "AND" and || for "OR". Never use the expressions "AND", neither "OR", instead always use &&, ||';
   const completion = await openai.beta.chat.completions.parse({
     model: "gpt-4o",
     messages: [
