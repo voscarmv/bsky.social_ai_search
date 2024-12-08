@@ -107,7 +107,7 @@ const searchQuerySchema2 = z.object({
     password: process.env.BSKY_PASS
   });
   //  const description = 'Find a conversation where people are discussing the geopolitics of the American economy';
-  const instruction = 'Create a query composed of subqueries separeted by || for "OR". Each subquery should be inside parentheses and may contain different combinations of relevant single-word keywords, or keyphrases inside double quotes. You may nest and combine these keywords and keyphrases themselves inside parentheses also using && for "AND" and || for "OR". Never use the expressions "AND", neither "OR", instead always use &&, ||';
+  const instruction = 'Imagine fragments of conversations that people would have about the given description. Use one-to-three-word fragments of these conversations as the subqueries for query composed of subqueries separeted by || for "OR". Each subquery should be inside parentheses and may contain different combinations of relevant single-word keywords, or keyphrases inside double quotes. You may nest and combine these keywords and keyphrases themselves inside parentheses also using && for "AND" and || for "OR". Never use the expressions "AND", neither "OR", instead always use &&, ||';
   const completion = await openai.beta.chat.completions.parse({
     model: "gpt-4o",
     messages: [
